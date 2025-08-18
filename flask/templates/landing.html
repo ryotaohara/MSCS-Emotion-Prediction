@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emotion App - Landing</title>
+</head>
+<body>
+    <h1>Welcome to the Emotion Prediction App</h1>
+    <p>
+        This web application was developed as part of a research project for a Master of Science in Computer Science.<br>
+        The main function of the application is to take user input and return the predicted emotion.<br>
+        Records in MongoDB and MySQL can be viewed in the respective page below.
+    </p>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('predict') }}">Predict Your Emotion</a></li>
+            <li><a href="{{ url_for('retrain') }}">Retrain Emotion Prediction Model</a></li>
+            <li><a href="{{ url_for('records_predictions_mongodb') }}">View Prediction Records in MongoDB</a></li>
+            <li><a href="{{ url_for('records_predictions_mysql') }}">View Prediction Records in MySQL</a></li>
+            <li><a href="{{ url_for('records_emotions_mongodb') }}">View Emotion Records in MongoDB</a></li>
+            <li><a href="{{ url_for('records_emotions_mysql') }}">View Emotion Records in MySQL</a></li>
+            <li><a href="{{ url_for('records_versions_mongodb') }}">View Version Records in MongoDB</a></li>
+            <li><a href="{{ url_for('records_versions_mysql') }}">View Version Records in MySQL</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

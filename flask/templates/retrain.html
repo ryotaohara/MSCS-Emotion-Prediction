@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Retrain Model</title>
+</head>
+<body>
+    <h1>Retrain Emotion Prediction Models</h1>
+    <p>
+        Model retraining may take up to 60 minutes.<br><br>
+        In practice, retrained models are deployed to production environments only after their performance is thoroughly validated.<br>
+        The retrain function was implemented specifically for this application as part of the research project.<br>
+        After model retraining, the model performance may vary betteen MongoDB and MySQL services as not all seeds are fixed.
+    </p>
+    <form method="post">
+        <button type="submit">Retrain Now</button>
+    </form>
+
+    {% if mongodb_version and mysql_version %}
+        <h2>Retraining Results</h2>
+
+        <h3>MongoDB Model</h3>
+        <p><strong>Version:</strong> {{ mongodb_version }}</p>
+        <p><strong>Duration (seconds):</strong> {{ mongodb_duration }}</p>
+        <p><strong>Training Accuracy:</strong> {{ mongodb_acc_train }}</p>
+        <p><strong>Validation Accuracy:</strong> {{ mongodb_acc_val }}</p>
+
+        <h3>MySQL Model</h3>
+        <p><strong>Version:</strong> {{ mysql_version }}</p>
+        <p><strong>Duration (seconds):</strong> {{ mysql_duration }}</p>
+        <p><strong>Training Accuracy:</strong> {{ mysql_acc_train }}</p>
+        <p><strong>Validation Accuracy:</strong> {{ mysql_acc_val }}</p>
+    {% endif %}
+
+    <p><a href="{{ url_for('landing') }}">← Back to Home</a></p>
+</body>
+</html>

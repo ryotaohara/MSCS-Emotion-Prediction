@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit Actual Emotion</title>
+</head>
+<body>
+    <h1>Submit Feedback</h1>
+    <form method="post">
+        <p><strong>Text:</strong> {{ text }}</p>
+        <p><strong>Predicted (MongoDB):</strong> {{ mongodb_pred }}</p>
+        <p><strong>Predicted (MySQL):</strong> {{ mysql_pred }}</p>
+        
+        <input type="hidden" name="text" value="{{ text }}">
+        <input type="hidden" name="mongodb_pred" value="{{ mongodb_pred }}">
+        <input type="hidden" name="mysql_pred" value="{{ mysql_pred }}">
+
+        <label for="actual">Actual Emotion:</label>
+        <select name="actual" required>
+            <option value="">--Select Emotion--</option>
+            <option value="sadness">Sadness</option>
+            <option value="joy">Joy</option>
+            <option value="love">Love</option>
+            <option value="anger">Anger</option>
+            <option value="fear">Fear</option>
+            <option value="surprise">Surprise</option>
+        </select>
+        <br><br>
+        <button type="submit">Submit</button>
+        <br><br>
+        <p>
+            *Please select the emotion that best matches your input.<br>
+            *Your submitted data may be used to retrain the emotion prediction models.
+        </p>
+    </form>
+</body>
+</html>

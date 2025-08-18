@@ -1,0 +1,19 @@
+### Data Processing ###
+numpy
+pandas
+scikit-learn
+keras
+tensorflow
+
+### NLP ###
+nltk
+
+### Web framework ###
+Flask
+waitress
+
+### Plotting ###
+matplotlib
+
+### Database ###
+mysql-connector-python

@@ -1,0 +1,12 @@
+requests
+numpy
+pandas
+matplotlib
+
+### Web framework ###
+Flask
+waitress
+
+### Database ###
+pymongo
+mysql-connector-python

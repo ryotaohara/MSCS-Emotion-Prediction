@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Emotion App - {{ source_name }} Emotion Records</title>
+</head>
+<body>
+    {% set page = page|default(1) %}
+    {% set total_pages = total_pages|default(1) %}
+    <h1>{{ source_name }} Emotion Records</h1>
+
+    <form method="get" action="">
+        <input type="text" name="query" placeholder="Search text..." value="{{ query | default('') }}">
+        <input type="submit" value="Filter">
+    </form>
+    <p><em>Filter time: {{ filter_time }}s</em></p>
+
+    {% if records %}
+        <table border="1" style="width:100%; border-collapse: collapse; margin-top:1em;">
+            <thead>
+                <tr>
+                    <th>Text</th>
+                    <th>Actual Emotion</th>
+                    <th>Timestamp in JST (UTC+9)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in records %}
+                <tr>
+                    <td>{{ r.text }}</td>
+                    <td>{{ r.emotion }}</td>
+                    <td>{{ r.timestamp }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div style="margin-top:1em;">
+            <p>Page {{ page }} of {{ total_pages }}</p>
+            {% if total_pages > 1 %}
+                {% if page > 1 %}
+                    <a href="{{ url_for(request.endpoint, page=page-1, query=query) }}">Previous</a>
+                {% endif %}
+
+                <a href="{{ url_for(request.endpoint, page=1, query=query) }}">1</a>
+                {% if page > 3 %}
+                    &hellip;
+                {% endif %}
+
+                {% for p in range(page-2, page+3) %}
+                    {% if p > 1 and p < total_pages %}
+                        {% if p == page %}
+                            <strong>{{ p }}</strong>
+                        {% else %}
+                            <a href="{{ url_for(request.endpoint, page=p, query=query) }}">{{ p }}</a>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+
+                {% if page < total_pages - 2 %}
+                    &hellip;
+                {% endif %}
+                <a href="{{ url_for(request.endpoint, page=total_pages, query=query) }}">{{ total_pages }}</a>
+                
+                {% if page < total_pages %}
+                    <a href="{{ url_for(request.endpoint, page=page+1, query=query) }}">Next</a>
+                {% endif %}
+            {% endif %}
+        </div>
+    {% else %}
+        <p>No emotion records found.</p>
+    {% endif %}
+
+    <p><a href="{{ url_for('landing') }}">← Back to Home</a></p>
+</body>
+</html>

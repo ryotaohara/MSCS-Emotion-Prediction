@@ -1,0 +1,28 @@
+# Use a slim Python image with TensorFlow compatibility
+FROM python:3.10-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy model and tokenizer from subdirectories
+COPY emotions.csv ./emotions.csv
+COPY models/v001.keras ./models/v001.keras
+COPY tokenizers/v001.json ./tokenizers/v001.json
+
+# Copy and install dependencies
+COPY app.py requirements_mongodb.txt ./
+RUN pip install --upgrade pip
+RUN pip install -r requirements_mongodb.txt
+
+# Copy and run the nltk download script
+COPY download_nltk.py /tmp/download_nltk.py
+RUN python /tmp/download_nltk.py
+
+# Environment variable
+ENV DB=MongoDB
+
+# Expose port for API
+EXPOSE 8888
+
+# Run the Flask API
+CMD ["python", "app.py"]

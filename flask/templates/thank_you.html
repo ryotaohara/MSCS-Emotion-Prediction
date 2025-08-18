@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thank You</title>
+</head>
+<body>
+    <h1>Thank You for Your Feedback!</h1>
+
+    <h2>Submitted Record</h2>
+    <p><strong>Text:</strong> {{ record.text }}</p>
+    <p><strong>Predicted (MongoDB):</strong> {{ record.mongodb_pred }}</p>
+    <p><strong>Predicted (MySQL):</strong> {{ record.mysql_pred }}</p>
+    <p><strong>Actual Emotion:</strong> {{ record.actual }}</p>
+
+    <a href="{{ url_for('predict') }}">Make Another Prediction</a>
+    <br><br>
+    <p><a href="{{ url_for('landing') }}">← Back to Home</a></p>
+</body>
+</html>
